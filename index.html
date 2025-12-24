@@ -1,0 +1,869 @@
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="UTF-8" />
+        
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+            rel="stylesheet"
+          />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1"
+          />
+          <meta name="theme-color" content="#120c08" />
+
+          <title>The Friends Cafe</title>
+
+          <style>
+
+      html{
+      scroll-behavior:smooth;
+      }
+
+            * {
+              box-sizing: border-box;
+              -webkit-tap-highlight-color: transparent;
+            }
+
+            body {
+              margin: 0;
+              font-family: Poppins, Arial;
+            background: 
+        linear-gradient(rgba(18,12,8,0.85), rgba(18,12,8,0.85)),
+        url("https://images.unsplash.com/photo-1531752074002-abf991376d04?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center/cover fixed no-repeat;
+              color: #f5efe9;
+            }
+            h1 {
+              text-align: center;
+              color: #ffcf9f;
+            }
+
+            .insta-box {
+              position: fixed;
+              top: 8px;
+              right: 8px;
+              background: #ffd6e7;
+              padding: 6px 10px;
+              border-radius: 12px;
+              z-index: 50;
+            }
+            .insta-box a {
+              text-decoration: none;
+              color: #120c08;
+              font-size: 12px;
+              font-weight: 600;
+            }
+
+            .cat {
+              display: flex;
+              gap: 6px;
+              overflow-x: auto;
+              padding: 8px;
+              position: sticky;
+              top: 0;
+              background: #120c08;
+              z-index: 20;
+            }
+            .cat button {
+              background: rgba(43,29,22,0.85);
+        color: #ffcf9f;
+        backdrop-filter: blur(4px);
+              border: 0;
+              padding: 6px 14px;
+              border-radius: 20px;
+              white-space: nowrap;
+              font-size: 13px;
+              flex-shrink: 0;
+            }
+
+            #welcome {
+              text-align: center;
+              margin-top: 50px;
+              opacity: 0.85;
+            }
+            #welcome h2 {
+              color: #ffcf9f;
+            }
+
+            .sec {
+              display: none;
+              margin: 16px auto;
+              max-width: 980px;
+              background: rgba(255, 255, 255, 0.06);
+              padding: 14px;
+              border-radius: 14px;
+              backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.08);
+
+            }
+            .sec.active {
+              display: block;
+            }
+
+            .t {
+              color: #ffcf9f;
+              border-bottom: 1px dashed #555;
+              margin-bottom: 10px;
+            }
+            .i {
+              display: flex;
+              justify-content: space-between;
+              padding: 6px 0;
+              border-bottom: 1px dotted #444;
+              flex-wrap: wrap;
+              gap: 6px;
+              font-size: 14px;
+            }
+            .q {
+              display: flex;
+              gap: 6px;
+            }
+            .q button {
+              border: 0;
+              background: #ffcf9f;
+              padding: 4px 10px;
+              border-radius: 6px;
+              font-size: 12px;
+            }
+
+            .cart {
+              position: fixed;
+              right: 12px;
+              bottom: 12px;
+              background: #ffcf9f;
+              color: #120c08;
+              padding: 12px;
+              border-radius: 12px;
+              min-width: 160px;
+              box-shadow:0 8px 25px rgba(0,0,0,.35);
+              backdrop-filter: blur(8px);
+      border: 1px solid rgba(0,0,0,0.3);
+
+            }
+            .cart button {
+              width: 100%;
+              margin-top: 6px;
+              border: 0;
+              padding: 8px;
+              border-radius: 8px;
+              font-weight: bold;
+            }
+            .cart .wa {
+              background: #120c08;
+              color: #ffcf9f;
+            }
+            .cart .surprise {
+              background: linear-gradient(135deg, #ff69b4, #ff1493);
+              color: #fff;
+            }
+
+            @media (max-width: 600px) {
+              .cart {
+                left: 10px;
+                right: 10px;
+                bottom: 8px;
+                min-width: auto;
+                font-size: 14px;
+              }
+            }
+
+            @media(max-width:380px){
+        .i{
+          font-size:13px;
+        }
+        .cat button{
+          font-size:12px;
+          padding:6px 10px;
+        }
+      }
+
+
+            select {
+              padding: 8px 14px;
+              border-radius: 20px;
+              background: #2b1d16;
+              color: #ffcf9f;
+              border: 1px solid #ffcf9f;
+            }
+
+            #welcome {
+              padding: 10px;
+            }
+            #welcome p {
+              font-size: 14px;
+              line-height: 1.4;
+            background-color: #555;
+            }
+
+            .sec {
+              width: 95%;
+            }
+
+      .cat button.active {
+        background: #ffcf9f;
+        color: #120c08;
+        font-weight: 600;
+      }
+
+      /* 🔽 space for fixed cart */
+      #menu {
+        padding-bottom: 140px;
+      }
+
+      @media (max-width:600px){
+        #menu{
+          padding-bottom:180px;
+        }
+      }
+
+      .size-s {
+        color: #4CAF50; /* green */
+        font-weight: 600;
+      }
+
+      .size-m {
+        color: #FFC107; /* orange */
+        font-weight: 600;
+      }
+
+      .size-l {
+        color: #F44336; /* red */
+        font-weight: 600;
+      }
+
+      #total{
+        font-size:20px;
+        font-weight:700;
+      }
+
+      /* 🎉 Party Hall Cards */
+.events {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  max-width: 360px;
+  margin: 25px auto 15px;
+}
+
+.event-card {
+  background: rgba(255, 207, 159, 0.18);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 207, 159, 0.45);
+  border-radius: 16px;
+  padding: 18px 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffcf9f;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.event-card:hover {
+  transform: scale(1.06);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+}
+
+.event-note {
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.9;
+  margin-bottom: 22px;
+  line-height: 1.4;
+}
+
+
+
+          </style>
+        </head>
+
+        <body>
+          <div class="insta-box">
+            <a href="https://www.instagram.com/Aapka-bhai01/" target="_blank">
+              📸 Aapka-bhai01
+            </a>
+          </div>
+
+          <h1>☕ CAFE NAME </h1>
+
+          <div style="text-align: center">
+          <select id="table" onchange="resetCart()">
+              <option value="">Select Table</option>
+              <option>Table 1 (Ground floor)</option>
+              <option>Table 2 (Ground floor)</option>
+              <option>Table 3 (Ground floor)</option>
+              <option>Table 4 (Ground floor)</option>
+              <option>Table 5 (Ground floor)</option>
+              <option>Table 6 (Ground floor)</option>
+              <option>Table 1 (out door)</option>
+              <option>Table 2 (out door)</option>
+              <option>Table 3 (out door)</option>
+              <option>Table 1 (1st floor)</option>
+              <option>Table 2 (1st floor)</option>
+              <option>Table 3 (1st floor)</option>
+              <option>Table 4 (1st floor)</option>
+              <option>Table 1 (Roof top 🖼️)</option>
+              <option>Table 2 (Roof top 🖼️)</option>
+              <option>Table 3 (Roof top 🖼️)</option>
+              <option>Take Away 🚗</option>
+            </select>
+          </div>
+
+          <div class="cat" id="cat"></div>
+
+          <div id="welcome">
+            <h1>🙏 Welcome to CAFE ☕</h1>
+            <p>🙂 Please select a category</p>
+            <h2>made by V.S rathore</h2>
+            <p>
+              Hey! 🎉 I make small private web pages to surprise friends/family.
+              Birthday / Love / Sorry / Congrats 🎂❤️ Want me to make one for you?
+              Reply YES!
+            </p>
+            <!-- 🎉 Party Hall Section -->
+<div class="events">
+  <div class="event-card" onclick="bookEvent('Birthday Party 🎂')">
+    🎂<br>Birthday Party
+  </div>
+
+  <div class="event-card" onclick="bookEvent('Bachelor Party 🥂')">
+    🥂<br>Bachelor Party
+  </div>
+
+  <div class="event-card" onclick="bookEvent('Anniversary 💍')">
+    💍<br>Anniversary
+  </div>
+
+  <div class="event-card" onclick="bookEvent('Get Together 🤝')">
+    🤝<br>Get Together
+  </div>
+</div>
+
+<p class="event-note">
+  🎉 <b>Party Hall Available</b><br>
+  Music • Decoration • Cake • Photography
+</p>
+
+          </div>
+
+          <div id="menu"></div>
+
+          <div class="cart">
+            <div id="total">₹0</div>
+            <button class="wa" onclick="wa()">Click Order</button>
+            <button onclick="clearCart()">Clear Cart</button>
+            <button class="surprise" onclick="surprise()">🎁 Surprise</button>
+            <div id="cartItems" style="font-size:12px;max-height:80px;overflow:auto;"></div>
+            <div id="gst" style="font-size:12px;margin-top:6px"></div>
+
+
+          </div>
+
+          <script>
+            /* 🔔 sound + vibration */
+            const beep = new Audio(
+              "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA="
+            );
+            function alertUser() {
+              beep.currentTime = 0;
+              beep.play().catch(() => {});
+              if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+            }
+
+            /* 🔥 FULL COMPLETE MENU */
+          const MENU = [
+
+        [
+          "🍜 Manchurian",
+          [
+            ["Dry Manchurian", 99],
+            ["Gravy Manchurian", 109],
+            ["Paneer Manchurian", 149],
+            ["Rice Manchurian", 139],
+          ],
+        ],
+
+        [
+          "🍚 Rice",
+          [
+            ["Paneer Fried Rice", 149],
+            ["Fried Rice", 99],
+            ["Chilli Garlic Rice", 109],
+            ["Singapuri Rice", 129],
+            ["Hakka Rice", 109],
+          ],
+        ],
+
+        [
+          "🍝 Noodles",
+          [
+            ["Butter Noodles", 109],
+            ["Paneer Noodles", 149],
+            ["Veg Noodles", 89],
+            ["Singapuri Noodles", 99],
+            ["Hakka Noodles", 99],
+            ["Chilli Garlic Noodles", 109],
+          ],
+        ],
+
+        [
+          "🥔 Potato",
+          [
+            ["Chilli Potato", 99],
+            ["Honey Chilli Potato", 109],
+          ],
+        ],
+
+        [
+          "🥟 Momos",
+          [
+            ["Fried Momos", 79],
+            ["Perry Perry Momos", 89],
+            ["Crunchy Momos", 89],
+            ["Steam Momos", 69],
+            ["Paneer Momos", 99],
+          ],
+        ],
+
+        [
+          "🍜 MAGGI",
+          [
+            ["Masala Maggi", 59],
+            ["Vegetable Maggi", 69],
+            ["Cheese Maggi", 69],
+            ["Cheese & Corn Maggi", 79],
+            ["Paneer Maggi", 89],
+          ],
+        ],
+
+        [
+          "🌯 Rolls",
+          [
+            ["Spring Roll", 89],
+            ["Crunchy Roll", 99],
+          ],
+        ],
+
+        [
+          "🧀 Paneer Special",
+          [
+            ["Paneer 65", 119],
+            ["Paneer Maggi", 89],
+            ["Paneer Cheese Sandwich", 79],
+            ["Paneer Momo's", 99],
+            ["Paneer Fried", 139],
+            ["Paneer Noodles", 149],
+            ["Paneer Manchurian", 149],
+            ["Chilli Paneer", 189],
+            ["Honey Chilli Paneer", 199],
+            ["Paneer Pizza", 219],
+          ],
+        ],
+
+        [
+          "🥪 SANDWICH",
+          [
+            ["Veg Sandwich", 49],
+            ["Grill Sandwich", 59],
+            ["Cheese & Corn Sandwich", 69],
+            ["Tandoori Cheese Sandwich", 69],
+            ["Makhani Cheese Sandwich", 69],
+            ["Paneer Cheese Sandwich", 79],
+          ],
+        ],
+
+        [
+          "🍕 Pizza (Slice) L/M/S",
+          [
+            ["Margherita Pizza", [139,99,89]],
+            ["Cheese Pizza", [149,109,99]],
+            ["OTC Pizza", [179,139,129]],
+            ["Onion Pizza", [189,149,139]],
+            ["Corn & Cheese Pizza", [199,159,149]],
+            ["Double Cheese Pizza", [199,159,149]],
+            ["Makhani Pizza", [229,189,179]],
+            ["Perry Perry Pizza", [299,189,179]],
+            ["Tandoori Pizza", [229,189,179]],
+            ["Mint Pizza", [229,189,179]],
+            ["Truffle Pizza", [229,189,179]],
+            ["Roasted Pizza", [249,199,189]],
+            ["Paneer Pizza", [259,219,189]],
+            ["TFC Special Pizza", [299,249,239]],
+          ],
+        ],
+
+        [
+          "🍔 BURGER",
+          [
+            ["Veg Burger", 59],
+            ["Cheese Burger", 79],
+            ["Tandoori Burger", 69],
+            ["Makhani Cheese Burger", 89],
+            ["Perry-Perry Cheese Burger", 89],
+          ],
+        ],
+
+          [
+          "🍟 Franch-Fries",
+          [
+            ["Salted Fries", 49],
+            ["Tandoori French Fries", 79],
+            ["Makhani French Fries", 69],
+            ["Perry Perry French Fries", 89],
+            ["Cheese Loaded Fries", 89],
+          ],
+        ],
+
+
+        [
+          " 🍵 HOT Coffee L/M/S",
+          [
+            ["Blueberry Coffee", [89, 69, 49]],
+            ["Classic Coffee", [89, 59, 39]],
+            ["Carebale Coffee", [89, 79, 59]],
+            ["Vanilla Cold Coffee", [89, 69, 49]],
+            ["Hazelnut Coffee", [89, 69, 49]],
+            ["Almond Coffee", [99, 79, 59]],
+          ],
+        ],
+
+        [
+          " 🥤 Soft drink's",
+          [
+            ["Coke", 39],
+            ["Sprite", 39],
+          ],
+        ],
+
+        [
+          " 🍸 Mocktail's",
+          [
+            ["Virgin-Mojito", 99],
+            ["Green Apple", 99],
+            ["Blue Lagoon", 99],
+            ["Kala khatta", 99],
+            ["Blood orange", 99],
+          ],
+        ],
+
+        [
+          "🍝 Pasta L/M/S",
+          [
+            ["Red Pasta", [159, 149, 139]],
+            ["White Pasta", [159, 149, 139]],
+            ["Pink Pasta", [159, 149, 139]],
+          ],
+        ],
+
+        ["☕ Tea", [["Regular Chai", 29]]],
+        ["🍵 Soup", [["Tomato soup", 39]]],
+
+        [
+          "🧋 Shakes S/M/L",
+          [
+            ["Oreo shakes", [89, 109, 129]],
+            ["KitKat shakes", [89, 109, 129]],
+            ["Vanilla shakes", [59, 79, 99]],
+            ["Strawberry Shakes", [59, 79, 99]],
+            ["Pineapple Shakes", [59, 79, 99]],
+            ["Chocolate Shakes", [69, 89, 109]],
+            ["Butterscotch Shakes", [69, 89, 109]],
+            ["Black Currant Shakes", [79, 99, 119]],
+            ["Kesar Shakes", [79, 99, 119]],
+            ["Paan Shakes", [79, 99, 119]],
+            ["TFC Special Shakes", [99, 119, 149]],
+          ],
+        ],
+
+        [
+          "🧊 Cold Coffee L/M/S",
+          [
+            ["Cold Coffee", [89, 69, 49]],
+            ["Chocolate Coffee", [109, 89, 69]],
+            ["Choco Cold Coffee", [99, 79, 59]],
+            ["Vanilla Cold Coffee", [109, 89, 69]],
+            ["TFC Special Coffee", [129, 99, 89]],
+          ],
+        ],
+
+        [
+          "🍢 STARTERS",
+          [
+            ["Veggie Stick", 59],
+            ["Hara Bhara Kabab", 79],
+            ["Chilli Pops", 59],
+            ["Veggie Bites", 79],
+          ],
+        ],
+
+        [
+          "🎁 Combos",
+          [
+            ["Mini Cold Coffee + Fries", 99],
+            ["Fries + Veg Sandwich", 169],
+            ["Fried Rice + Gravy Manchurian", 199],
+            ["OTC Pizza + Crunchy Roll", 179],
+            ["White Pasta + Fried Momos", 169],
+            ["Singapuri Noodles + Gravy Manchurian", 169],
+            ["Paneer Momo's + Red Pasta", 199],
+            ["Chilli Paneer + Singapuri Rice", 249],
+          ],
+        ],
+      ];
+
+
+            let cart = {};
+            let subtotal = 0;
+            let cgst = 0;
+            let sgst = 0;
+            let total = 0;
+
+            const cat = document.getElementById("cat");
+            const menu = document.getElementById("menu");
+
+            /* build menu */
+            MENU.forEach((c, i) => {
+              let id = "c" + i;
+              cat.innerHTML += `<button onclick="show('${id}', this)">${c[0]}</button>`;
+              let h = `<div class="sec" id="${id}"><div class="t">${c[0]}</div>`;
+              c[1].forEach((it) => {
+                if (Array.isArray(it[1])) {
+
+        // SMALL
+        h += `<div class="i">
+      ${it[0]} <span class="size-s">S</span> ₹${it[1][0]}
+          <div class="q">
+            <button onclick="removeItem('${it[0]} S',${it[1][0]})">-</button>
+            <span id="qty-${it[0].replace(/\s/g,'')}S">0</span>
+            <button onclick="add('${it[0]} S',${it[1][0]})">+</button>
+          </div>
+        </div>`;
+
+        // MEDIUM
+        h += `<div class="i">
+        ${it[0]} <span class="size-m">M</span> ₹${it[1][1]}
+          <div class="q">
+            <button onclick="removeItem('${it[0]} M',${it[1][1]})">-</button>
+            <span id="qty-${it[0].replace(/\s/g,'')}M">0</span>
+            <button onclick="add('${it[0]} M',${it[1][1]})">+</button>
+          </div>
+        </div>`;
+
+        // LARGE
+        h += `<div class="i">
+        ${it[0]} <span class="size-l">L</span> ₹${it[1][2]}
+          <div class="q">
+            <button onclick="removeItem('${it[0]} L',${it[1][2]})">-</button>
+            <span id="qty-${it[0].replace(/\s/g,'')}L">0</span>
+            <button onclick="add('${it[0]} L',${it[1][2]})">+</button>
+          </div>
+        </div>`;
+
+                } else {
+                h += `<div class="i">
+        ${it[0]} ₹${it[1]}
+        <div class="q">
+          <button onclick="removeItem('${it[0]}',${it[1]})">-</button>
+          <span id="qty-${it[0].replace(/\s/g,'')}" style="min-width:18px;text-align:center;">0</span>
+          <button onclick="add('${it[0]}',${it[1]})">+</button>
+        </div>
+      </div>`;
+
+                }
+              });
+              menu.innerHTML += h + "</div>";
+            });
+
+          function show(id, btn) {
+        document.getElementById("welcome").style.display = "none";
+
+        document.querySelectorAll(".sec")
+          .forEach(s => s.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+
+        document.querySelectorAll(".cat button")
+          .forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+
+      function wa() {
+        alertUser();
+
+        let t = document.getElementById("table").value;
+        if (!t || !total) return alert("Select table & items");
+
+        let m = `${t}\n\n`;
+
+        for (let i in cart) {
+          m += `${i} ${cart[i].qty} × ₹${cart[i].price} = ₹${cart[i].qty * cart[i].price}\n`;
+        }
+
+        m += `\nSubtotal: ₹${subtotal}`;
+        m += `\nCGST (2.5%): ₹${cgst}`;
+        m += `\nSGST (2.5%): ₹${sgst}`;
+        m += `\nTotal: ₹${total}`;
+
+        window.open(`https://wa.me/919257480019?text=${encodeURIComponent(m)}`);
+      }
+            
+            function surprise() {
+              alertUser();
+              window.open(
+                "https://lr2938650-svg.github.io/Aapka-bhai-suprise/",
+                "_blank"
+              );
+            }
+
+            function bookEvent(type) {
+  alertUser(); // sound + vibration
+
+  const msg = `
+Hello 👋
+I want to book Party Hall for:
+
+🎉 Event: ${type}
+
+📅 Date:
+⏰ Time:
+👥 Guests:
+
+Please share details & availability.
+`;
+
+  window.open(
+    "https://wa.me/919257480019?text=" +
+      encodeURIComponent(msg),
+    "_blank"
+  );
+}
+
+
+            function add(n, p) {
+        if (!document.getElementById("table").value) {
+          alert("Please select table first");
+          return;
+        }
+
+      if (!cart[n]) {
+        cart[n] = { qty: 0, price: p };
+      }
+      cart[n].qty++;
+        subtotal += p;
+
+        cgst = +(subtotal * 0.025).toFixed(2);
+        sgst = +(subtotal * 0.025).toFixed(2);
+        total = +(subtotal + cgst + sgst).toFixed(2);
+
+        document.getElementById("total").innerText = "₹" + total;
+
+        document.getElementById(
+          "qty-" + n.replace(/\s/g,'')
+        ).innerText = cart[n].qty;
+
+        renderCart();
+
+        document.getElementById("gst").innerHTML =
+        `Subtotal: ₹${subtotal}<br>
+        CGST (2.5%): ₹${cgst}<br>
+        SGST (2.5%): ₹${sgst}<br>
+        <b>Total: ₹${total}</b>`;
+
+      }
+
+
+      function removeItem(n, p) {
+        if (!cart[n]) return;
+
+      cart[n].qty--;
+      if (cart[n].qty <= 0) delete cart[n];
+        subtotal -= p;
+
+        if (subtotal < 0) subtotal = 0;
+
+        cgst = +(subtotal * 0.025).toFixed(2);
+        sgst = +(subtotal * 0.025).toFixed(2);
+        total = +(subtotal + cgst + sgst).toFixed(2);
+
+        document.getElementById("total").innerText = "₹" + total;
+
+        // 👉 quantity update
+        const qid = "qty-" + n.replace(/\s/g,'');
+      document.getElementById(qid).innerText = cart[n]?.qty || 0;
+
+        document.getElementById("gst").innerHTML =
+          `Subtotal: ₹${subtotal}<br>
+          CGST (2.5%): ₹${cgst}<br>
+          SGST (2.5%): ₹${sgst}<br>
+          <b>Total: ₹${total}</b>`;
+
+          renderCart();
+
+      }
+
+      function renderCart() {
+
+      //   if (Object.keys(cart).length === 0) {
+      //   document.getElementById("gst").innerHTML = "";
+      // }
+
+        let t = document.getElementById("table").value;
+
+        let html = "";
+        if (t) html += `<b>${t}</b><br>`;
+
+        for (let i in cart) {
+        //  let price = MENU.flat(2).find(x => x[0] === i)?.[1] || 0;
+        html += `${i} ${cart[i].qty} × ₹${cart[i].price}
+      = ₹${cart[i].qty * cart[i].price}<br>`;
+
+        }
+
+        document.getElementById("cartItems").innerHTML =
+          html || "<i>No items</i>";
+
+        document.getElementById("gst").innerHTML =
+          `Subtotal: ₹${subtotal}<br>
+          CGST (2.5%): ₹${cgst}<br>
+          SGST (2.5%): ₹${sgst}<br>
+          <b>Total: ₹${total}</b>`;
+      }
+
+      function resetCart(){
+        if(Object.keys(cart).length && !confirm("Change table & clear cart?")) {
+        return;
+      }
+        cart = {};
+        subtotal = cgst = sgst = total = 0;
+        document.getElementById("total").innerText = "₹0";
+        document.querySelectorAll("[id^='qty-']")
+          .forEach(e => e.innerText = 0);
+        renderCart();
+      }
+
+      function clearCart(){
+        if(!confirm("Clear cart?")) return;
+
+        cart = {};
+        subtotal = cgst = sgst = total = 0;
+
+        document.getElementById("table").value = ""; // 🔥 THIS LINE
+        document.getElementById("total").innerText = "₹0";
+
+        document.querySelectorAll("[id^='qty-']")
+          .forEach(e => e.innerText = 0);
+
+        document.getElementById("cartItems").innerHTML = "<i>No items</i>";
+        document.getElementById("gst").innerHTML = "";
+      }
+
+      if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('sw.js');
+      }
+
+
+
+          </script>
+        </body>
+      </html>
